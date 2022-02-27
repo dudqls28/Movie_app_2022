@@ -1,7 +1,7 @@
 import AppLoading from "expo-app-loading";
 import React, {useState} from "react";
 import { StyleSheet, Text, View } from 'react-native';
-//test
+//
 export default function App() {
   const [ready,setReaday] = useState(false);
   const startLoading = async () => {
