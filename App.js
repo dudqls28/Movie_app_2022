@@ -3,6 +3,8 @@ import React, {useState} from "react";
 import { StyleSheet, Text, View } from 'react-native';
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
+import { NavigationContainer } from "@react-navigation/native";
+import Tabs from "./navigation/Tabs";
 
 export default function App() {
   //const [ready,setReaday] = useState(false);
@@ -20,6 +22,10 @@ export default function App() {
     />
   );
   }
-  return <Text>Loaidng 끝!</Text>
+  return (
+    <NavigationContainer>
+      <Tabs />
+    </NavigationContainer>
+  )
 }
 
