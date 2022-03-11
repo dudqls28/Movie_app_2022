@@ -4,15 +4,17 @@ import { StyleSheet, Text, View , useColorScheme } from 'react-native';
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
-import Tabs from "./navigation/Tabs";
+import {  QueryClient, QueryClientProvider} from "react-query";
 import { ThemeProvider } from "styled-components/native";
 import { darkTheme,lightTheme } from "./styled";
+import Root from "./navigation/Root";
 //apiKey
 //09e026020d0680091279a8fc5d901b35
 export default function App() {
   //const [ready,setReaday] = useState(false);
   const isDark = useColorScheme() === "dark";
   const [fontLoad] = Font.useFonts(Ionicons.font);
+  const queryClient = new QueryClient();
   //const startLoading = async () => {
   //  await Font.loadAsync(Ionicons.font);
   //};
@@ -27,11 +29,13 @@ export default function App() {
   );
   }
   return (
+    <QueryClientProvider client={queryClient}>
     <ThemeProvider theme ={isDark ? darkTheme : lightTheme}>
     <NavigationContainer>
-      <Tabs />
+      <Root />
     </NavigationContainer>
     </ThemeProvider>
+    </QueryClientProvider>
   )
 }
 

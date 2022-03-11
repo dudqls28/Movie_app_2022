@@ -5,7 +5,6 @@ import Votes from "./Votes";
 
 const HMovie = styled.View`
     padding: 0px 30px;
-    margin-bottom : 30px;
     flex-direction: row;
 `
 const HColumn = styled.View`
@@ -68,7 +67,7 @@ const HMedia: React.FC<HMediaProps> = ({
                 {voteAverage ? <Votes votes={voteAverage} /> : null }
                 <Overview>
                     {overview !== "" && overview.length > 140
-                        ? `&{overview.slice(0,140)}...`
+                        ? `${overview.slice(0,140)}...`
                         : overview}
                 </Overview>
             </HColumn>
