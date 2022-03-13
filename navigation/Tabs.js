@@ -16,7 +16,7 @@ const Tabs = () => {
             backgroundColor : isDark ? BLACK_COLOR : "white",
         }}
         screenOptions = {{
-            unmountOnBlur: true,
+            // unmountOnBlur: true, // 화면이 다른 스크린으로가면 메모리에서 컴포넌트를 삭제해준다.
             tabBarStyle: {
                 backgroundColor : isDark ? BLACK_COLOR : "white",
             },
