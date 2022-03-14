@@ -1,70 +1,56 @@
-import React from "react";
-import { View, Text } from "react-native";
-import { FlatList, ScrollView } from "react-native";
-import { useQuery } from "react-query";
+import React, {useState} from "react";
+import HList from "../components/HList";
+import { ScrollView } from "react-native";
+import { RefreshControl  } from "react-native";
+import { useQuery , useQueryClient } from "react-query";
 import { tvApi } from "../api";
 import Loader from "../components/Loader";
-import VMedia from "../components/VMedia";
+import styled from "styled-components/native";
 
+const ListTitle = styled.Text`
+    color:white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 30px;
+`;
 const Tv = () => {
-    const { isLoading: todayLoading, data : todayData} 
+    const [refreshing,setRefreshing] = useState(false);
+    const queryClient = useQueryClient();
+    const { isLoading: todayLoading, data : todayData } 
     = useQuery(
         ["tv","today"],
         tvApi.airingToday
     );
-    const { isLoading: topLoading, data : topData} 
+    const { isLoading: topLoading, data : topData } 
     = useQuery(
         ["tv","top"],
         tvApi.topRated
     );
-    const { isLoading: trendingLoading, data : trendingData} 
+    const { isLoading: trendingLoading, data : trendingData } 
     = useQuery(
         ["tv","trending"],
         tvApi.trending
     );
-
+    
+    const onRefresh = async() => {
+        setRefreshing(true);
+        await queryClient.refetchQueries(["tv"]);
+        setRefreshing(false);
+    }
     const loading = todayLoading ||topLoading ||trendingLoading;
     if (loading) {
         return <Loader />
     }
     return (
-        <ScrollView>
-            <FlatList 
-                data={trendingData.results}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                    <VMedia 
-                        posterPath = { item.poster_path }
-                        originalTitle = { item.original_name }
-                        voteAverage = {item.vote_average}
-                    />
-                )}
-            />
-            <FlatList 
-                data={todayData.results}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                    <VMedia 
-                        posterPath = { item.poster_path }
-                        originalTitle = { item.original_name }
-                        voteAverage = {item.vote_average}
-                    />
-                )}
-            />
-            <FlatList 
-                data={topData.results}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                    <VMedia 
-                        posterPath = { item.poster_path }
-                        originalTitle = { item.original_name }
-                        voteAverage = {item.vote_average}
-                    />
-                )}
-            />
+        <ScrollView
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+            contentContainerStyle ={{ paddingVertical : 30}}
+            >
+            <HList title="Trending TV" data={trendingData.results} />
+            <HList title="Airing Today" data={todayData.results} />
+            <HList title="Top Rated TV" data={topData.results} />
         </ScrollView>
     )
 };

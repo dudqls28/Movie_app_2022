@@ -54,7 +54,7 @@ export const moviesApi = {
     ), 
     airingToday : () =>
     fetch(
-        `${BASE_URL}/tv/airing?api_key=${API_KEY}&language=en-US&page=1`
+        `${BASE_URL}/tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`
     ).then((res) => res.json()
     ), 
     topRated : () =>
