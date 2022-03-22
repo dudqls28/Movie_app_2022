@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components/native";
 import Poster from "./Poster";
 import Votes from "./Votes";
-
-const Movie = styled.View`
+import { useNavigation } from "@react-navigation/core";
+import { TouchableOpacity } from "react-native";
+import { Movie, TV } from "../api";
+const Container = styled.View`
 align-items: center;
 `
 
@@ -18,6 +20,7 @@ interface VMediaProps {
     posterPath : string;
     originalTitle: string;
     voteAverage: number;
+    fullData: Movie | TV;
 }
 
 const VMedia: React.FC<VMediaProps> = ({
@@ -25,15 +28,26 @@ const VMedia: React.FC<VMediaProps> = ({
     originalTitle,
     voteAverage,
 }) => {
+    const navigation = useNavigation();
+    const goDetail = () => {
+        navigation.navigate("Stack",{
+            screen:"Detail",
+        params: {
+            ...fullData,
+        },
+    });
+    };
     return (
-        <Movie>
+        <TouchableOpacity onPress={goDetail}>
+        <Container>
             <Poster path={posterPath} />
             <Title>
                 {originalTitle.slice(0,12)}
                 {originalTitle.length > 12 ? "..." : null}
             </Title>
             <Votes votes={voteAverage} />
-        </Movie>
+        </Container>
+        </TouchableOpacity>
     )
 };
 

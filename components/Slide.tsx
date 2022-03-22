@@ -1,10 +1,11 @@
 import { BlurView } from "expo-blur";
 import React from "react";
-import { StyleSheet, useColorScheme, View} from "react-native";
+import { StyleSheet, useColorScheme, View, TouchableWithoutFeedback} from "react-native";
 import styled from "styled-components/native";
 import { makeImgPath } from "../utils";
 import Poster from "./Poster";
-
+import { useNavigation } from "@react-navigation/core";
+import { Movie } from "../api";
 const BgImg = styled.Image``;
 
 const Title = styled.Text<{isDark:boolean}>`
@@ -37,6 +38,7 @@ interface SlideProps{
     originalTitle : string;
     voteAverage : number;
     overview : string;
+    fullData: Movie;
 }
 
 const Slide: React.FC<SlideProps> = ({
@@ -45,9 +47,20 @@ const Slide: React.FC<SlideProps> = ({
     originalTitle,
     voteAverage,
     overview,
+    fullData,
 }) => {
     const isDark = useColorScheme() === "dark";
+    const navigation = useNavigation();
+    const goToDetail = () => {
+        navigation.navigate("Stack",{
+            screen:"Detail",
+        params: {
+            ...fullData,
+        },
+    });
+    }
     return (
+        <TouchableWithoutFeedback onPress={goToDetail}>
         <View style={{ flex:1 }}>
             <BgImg style={StyleSheet.absoluteFill} source={{ uri: makeImgPath(backdropPath)}} />
             <BlurView tint={isDark ? "dark" : "light" } intensity={85} style={StyleSheet.absoluteFill}>
@@ -65,6 +78,7 @@ const Slide: React.FC<SlideProps> = ({
                 </Wrapper>
             </BlurView>
         </View>
+        </TouchableWithoutFeedback>
     )
 }
 
