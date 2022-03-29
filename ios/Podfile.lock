@@ -17,12 +17,16 @@ PODS:
     - ExpoModulesCore
   - Expo (44.0.6):
     - ExpoModulesCore
+  - ExpoLinearGradient (11.0.3):
+    - ExpoModulesCore
   - ExpoModulesCore (0.6.5):
     - React-Core
     - ReactCommon/turbomodule/core
   - EXSplashScreen (0.14.2):
     - ExpoModulesCore
     - React-Core
+  - EXWebBrowser (10.1.1):
+    - ExpoModulesCore
   - FBLazyVector (0.64.3)
   - FBReactNativeSpec (0.64.3):
     - RCT-Folly (= 2020.01.13.00)
@@ -306,8 +310,10 @@ DEPENDENCIES:
   - EXFont (from `../node_modules/expo-font/ios`)
   - EXKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - Expo (from `../node_modules/expo/ios`)
+  - ExpoLinearGradient (from `../node_modules/expo-linear-gradient/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core/ios`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
+  - EXWebBrowser (from `../node_modules/expo-web-browser/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
@@ -363,10 +369,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-keep-awake/ios"
   Expo:
     :path: "../node_modules/expo/ios"
+  ExpoLinearGradient:
+    :path: "../node_modules/expo-linear-gradient/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core/ios"
   EXSplashScreen:
     :path: "../node_modules/expo-splash-screen/ios"
+  EXWebBrowser:
+    :path: "../node_modules/expo-web-browser/ios"
   FBLazyVector:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
@@ -437,8 +447,10 @@ SPEC CHECKSUMS:
   EXFont: 621d92d8ac6702d02a5237602815c0e1b6d684e6
   EXKeepAwake: f1ed9c7609cfe32a5519acd0f7d536cb59b8a656
   Expo: 866e4538335514b5dfa678bd437f9e2b9696570a
+  ExpoLinearGradient: 711337580a2ecebb43c5e9adf2723e279ff8f6a8
   ExpoModulesCore: f16da48955ea71a71e423fba8a09d00a18946214
   EXSplashScreen: c4333e4d7a89cc3f7452166527d207c725d3c2a5
+  EXWebBrowser: 829cbd6d36472956ad73c5fa0edf15c1b34ccfd6
   FBLazyVector: c71c5917ec0ad2de41d5d06a5855f6d5eda06971
   FBReactNativeSpec: 5bfeee37bec9010a95c7fe778c35a9056f45c175
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62

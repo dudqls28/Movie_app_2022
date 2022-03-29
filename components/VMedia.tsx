@@ -27,6 +27,7 @@ const VMedia: React.FC<VMediaProps> = ({
     posterPath,
     originalTitle,
     voteAverage,
+    fullData,
 }) => {
     const navigation = useNavigation();
     const goDetail = () => {
